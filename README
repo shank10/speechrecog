@@ -1,0 +1,36 @@
+*******************
+I have removed the dataset, as its very big. One can download it from:
+https://www.tensorflow.org/datasets/catalog/speech_commands
+
+Please the file in a folder called speechdata or better still adapt the code based on your directory structure
+******************
+
+In factory of the future, one of the very basic requirement of machines is for it to respond to voice commands of the operator. AI could be used to convert speech commands like “rotate clockwise by 2 degrees” to make the actual geospatial device to execute the request. Google recently released about 65000, 1 second speech commands audio from over 1000 individuals. These are simple commands like "yes, no, stop" etc. So a multiclass classification algorithm was developed to detect the command from an unseen audio file.
+All the audio files have been placed in speechdata directory. It in-turn has train folder, which was used to train the classifier. The val folder which contains the validation audio files. And the test folder contains the unseen files by the model. Additionally a sample directory has been created to carry user provided speech commands for teting purpose.
+
+Please install all the requirements in the vm, as mentioned in the requirements.txt 
+
+To build the model use the following command:
+python3 buildspeechmodel.py - It took me about 18 hrs to build the model. The model is saved as audio_cnn.model
+
+One can explore the dataset by running the following command:
+python3 explore_data.py
+
+This will present to you all the audio transformations that I found useful to:
+1. Reduce the training dataset size
+2. Audio transformations and its usage to distinguish them from each other, in terms of belonging to different classes; and in-terms of determing their uniformity across the same class
+
+To test your own samples, place the audio commands in the speechdata/samples directory. I already have two files copied from the test folder. Thereafter you can run the classification test by the following command:
+python3 test.py
+
+It also plays the audio files, so that you can manually confirm its classification.
+
+The idea behind this model is to extend it in future, so that it can be integrated with CNC machines or mobile robots which will enable the user to control them by way of voice commands.
+
+Directory Structure:
+audio_cnn.model - This is the model that was built by the program 
+buildspeechmodel.py  - The actual script to build the model
+explore_data.py  - This script is used to analyze the data
+speechdata  - This directory contains all the train and test audios
+temp-plot.html  - This is the file generated as part of the exploration of training data, so that it can be shown in the browser
+test.py - This is a test script for custom audio commands processing
